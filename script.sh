@@ -13,6 +13,7 @@ npm install
 echo "Running database migrations..."
 php bin/console cache:clear --verbose
 symfony server:start -d
+npm run build
 php bin/console cache:clear
 php bin/console make:migration
 php bin/console doctrine:migrations:migrate
