@@ -25,7 +25,7 @@ class EtudiantController extends AbstractController
     {
         $this->entityManager = $entityManager;
     }
-    #[Route('/etudiant', name: 'app_etudiant')]
+    #[Route('/etudiant', name: 'app_Student')]
     public function index(StudentRepository $studentRepository): Response
     {
         return $this->render('base.html.twig', [
@@ -37,7 +37,7 @@ class EtudiantController extends AbstractController
     public function display_all(StudentRepository $studentRepository): Response
     {
         return $this->render('etudiant/index.html.twig', [
-            'AddEtudiant' => 'display all student',
+            'AddStudent' => 'display all student',
             'etudiant'=> $studentRepository->findAll(),
           ]);
     }
@@ -70,7 +70,7 @@ class EtudiantController extends AbstractController
     }
 
 
-    #[Route('/etudiant/{id}/edit', name: 'etudiant_edit')]
+    #[Route('/etudiant/{id}/edit', name: 'Student_edit')]
     public function edit(Request $request, int $id,LoggerInterface $logger): Response
     {
         $etudiant = $this->entityManager->getRepository(Student::class)->find($id);
@@ -95,7 +95,7 @@ class EtudiantController extends AbstractController
         ]);
     }
 
-    #[Route('/etudiant/{id}/delete', name:'etudiant_delete')]
+    #[Route('/etudiant/{id}/delete', name:'Student_delete')]
     public function delete(Request $request, int $id){
         $etudiant = $this->entityManager->getRepository(Student::class)->find($id);
         if (!$etudiant) {

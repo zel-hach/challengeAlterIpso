@@ -9,7 +9,7 @@
 </style>
 
 <div >
-    <h1>{{ AddEtudiant}}</h1>
+    <h1>{{ AddStudent}}</h1>
         <div>
         <table class="table table-hover">
         <thead>
@@ -27,8 +27,8 @@
                     <td>{{ student.prenom }}</td>
                     <td>{{ student.note }}</td>
                     <td>
-                    <a href="{{ path('etudiant_edit', {'id': student.id}) }}" class="link_edit">Update</a>
-                   <a href="{{path('etudiant_delete',{'id':student.id})}}" class="link_delete">delete</a>
+                    <a href="{{ path('Student_edit', {'id': student.id}) }}" class="link_edit">Update</a>
+                   <a href="{{path('Studiant_delete',{'id':student.id})}}" class="link_delete">delete</a>
                     </td>
                 </tr>
             {% else %}
