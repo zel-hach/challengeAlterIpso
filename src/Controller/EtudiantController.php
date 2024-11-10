@@ -54,15 +54,14 @@ class EtudiantController extends AbstractController
                 try {
                     $this->entityManager->persist($etudiant);
                     $this->entityManager->flush();
-                        $this->addFlash('success', 'student is created');
+                    $logger->log(1,'student is created');
                 } catch (\Exception $e) {
-                    $this->addFlash('error', 'error student not created ' . $e->getMessage());
+    $logger->log(1,'student not created');
                 }
                 return $this->redirectToRoute('find_All_Student');
             }
         }catch(Exception $e){
-            $logger->error('Form is not valid', ['form' => $form->getErrors(true, false)]);
-            $this->addFlash('error', 'Form data is invalid, student not created.');
+            $logger->error('Form is not valid , student not created', ['form' => $form->getErrors(true, false)]);
         }
         return $this->render('etudiant/create.html.twig',[
             'form' => $form->createView(),
@@ -84,9 +83,9 @@ class EtudiantController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             try {
                 $this->entityManager->flush();
-                $this->addFlash('success', 'student is updated.');
+                $logger->log(1,'student is updated.');
             } catch (\Exception $e) {
-                $this->addFlash('error', 'Error student not updated' . $e->getMessage());
+                $logger->error('Form is not valid , student not updated', ['form' => $form->getErrors(true, false)]);
             }
             return $this->redirectToRoute('find_All_Student');
         }
@@ -96,7 +95,7 @@ class EtudiantController extends AbstractController
     }
 
     #[Route('/etudiant/{id}/delete', name:'Student_delete')]
-    public function delete(Request $request, int $id){
+    public function delete(Request $request, int $id,LoggerInterface $logger){
         $etudiant = $this->entityManager->getRepository(Student::class)->find($id);
         if (!$etudiant) {
             throw $this->createNotFoundException('No etudiant found for id ' . $id);
@@ -104,9 +103,10 @@ class EtudiantController extends AbstractController
         $this->entityManager->remove($etudiant);
         try {
             $this->entityManager->flush();
-                $this->addFlash('success', 'student is deleted');
+            $logger->log(1,'student is deleted');
         } catch (\Exception $e) {
-            $this->addFlash('error', 'Eerror student not deleted ' . $e->getMessage());
-        }        return $this->redirectToRoute('find_All_Student');
+            $logger->error('Form is not valid , student not deleted');
+        }        
+        return $this->redirectToRoute('find_All_Student');
     }
 }
