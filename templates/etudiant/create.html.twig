@@ -1,0 +1,15 @@
+
+{% extends 'base.html.twig' %}
+
+{% block title 'cree une etudiant' %}
+
+{% block body %}
+    <h1>create new student </h1>
+
+     {{ form_start(form) }}
+            {{ form_row(form.nom) }}
+            {{ form_row(form.prenom) }}
+            {{ form_row(form.note) }}
+            <button type="submit" class="btn btn-primary mt-3">Submit</button>
+{{ form_end(form) }}
+{% endblock %}
