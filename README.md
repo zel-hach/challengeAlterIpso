@@ -12,13 +12,9 @@ challenge CRUD with symfony + MySQL + php cli
 # Getting Started
 1.Clone the repository :
 ```js
-{
     git@github.com:zel-hach/challengeAlterIpso.git
-}
 ```
 2. Use the Makefile to run the code :
 ```js
-{
   make up 
-}
 ```
